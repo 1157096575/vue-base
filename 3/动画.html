@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        #div1{
+            width: 100px;height: 100px;border: 1px solid #000;
+        }
+        .fade-transition{transition: all 1s;}
+        .fade-enter{opacity:0;}
+        .fade-leave{opacity:0;-webkit-transform: translateX(200px);
+           -moz-transform: translateX(200px);
+            -ms-transform: translateX(200px);
+             -o-transform: translateX(200px);
+                transform: translateX(200px);}
+    </style>
+    <script src="../vue.js"></script>
+    
+</head>
+<body>
+    <div id="box"> 
+        <input type="button" value="按钮" @click="toggle"/>
+        <div id="div1" v-show="bSign" transition="fade">aa</div>
+    </div>
+</body>
+    <script>
+        new Vue({
+            el : "#box",
+            data : {
+                bSign : true
+            },
+            methods : {
+                toggle(){
+                    this.bSign = !this.bSign;
+                }
+            }
+        })
+    </script>
+</html>

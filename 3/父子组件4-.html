@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../animate.css" />
+    <style>
+        #div1{
+            width: 100px;height: 100px;border: 1px solid #000;
+        }
+    </style>
+    <script src="../vue.js"></script>
+
+</head>
+<body>
+    <div id="box"> 
+        <hr />
+        <aaa>11</aaa>
+        <hr />
+        <aaa></aaa>
+    </div>
+</body>
+    <script>
+    new Vue({
+        el : '#box',
+        data : {
+            a : 1,
+            b : 2
+        },
+        components : {
+            'aaa' : {
+                data : function(){
+                    return {
+                        msg : '',
+                        msg00 : '',
+                        msg1 : '父组件数据1',
+                        msg2 : '父组件数据2'
+                    }
+                },
+                template : `<div>
+                    <h2>h2{{msg1}}</h2>
+                    <h3>h3{{msg2}}</h3>
+                    {{msg}} / {{msg00}}
+                    <hr>
+                    <bbb :mmm = 'msg1' :nnn='msg2' @childMsg2="get2" @childMsg='get'>111</bbb>
+                    <hr>
+                </div>`,
+                methods:{
+                    get(v){
+                        this.msg = v;
+                    },
+                    get2(v){
+                        this.msg00 = v;
+                    }
+                },
+                components : {
+                    'bbb' : {
+                        data : function(){
+                            return {
+                                msg01 : '子组件数据1',
+                                msg02 : '子组件数据2'
+                            }
+                        },
+                        props : ['mmm','nnn'],
+                        template : '<h4>h4{{msg01}}{{msg02}}<span>{{mmm}}{{nnn}}{{this.msg01}}</span><button value="button" @click="send">btn</button><button @click="send2">btn2</button></h4>',
+                        methods : {
+                            send(){
+                                this.$emit('childMsg',this.msg01);
+                            },
+                            send2(){
+                                this.$emit('childMsg2',this.msg02);
+                            }
+                        }
+                    }
+                }
+            } 
+        }
+    })
+    </script>
+</html>

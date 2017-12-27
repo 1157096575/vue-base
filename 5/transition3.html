@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="stylesheet" type="text/css" href="../animate.css" />
+        <style type="text/css">
+            p{width: 50px;height: 50px;background:#f40;margin:20px auto;}
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <button @click='show=!show'>btn</button>
+            <input type="text" v-model='msg'/>
+            <transition-group enter-active-class='animated bounceInLeft' leave-active-class='animated bounceOutRight'>
+                <p v-show='show' :key='100'>pp</p>
+                <p v-for='(item,i) in list' v-show='msg' :key='i'> {{item}} </p>
+            </transition-group>
+            <p>ppppppppp</p>
+        </div>
+    </body>
+</html>
+<script type="text/javascript" src="../vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el : '#box',
+        data : {
+            show : false,
+            msg :'',
+            arr : ['app','bba','cca','','cb','abg']
+        },
+        computed : {
+            list: function(){
+                var myarr = [];
+                this.arr.forEach(function(v) {
+                    if(v.indexOf(this.msg)!=-1){
+                        myarr.push(v);
+                    }
+                }.bind(this));
+                return myarr;
+            }
+        }
+    })
+</script>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        .gray{
+            background: #ccc;
+        }
+    </style>
+    <script type="text/javascript" src="../vue.js"></script>
+    <!-- <script type="text/javascript" src="../vue-resource.js"></script>  -->
+    <script type="text/javascript" src="../vue-resource-1.js"></script> 
+    <script>
+        window.onload = function(){
+            new Vue({
+                el : '.box',   //2.0 body ==> wrong
+                data:{
+                    t1 : '',
+                    myData : [],
+                    now : -1
+                },
+                methods:{
+                    get: function(e){
+                        if(e.keyCode==38 || e.keyCode==39) return;
+                        if(e.keyCode==13){
+                            window.open('https://www.baidu.com/s?wd='+this.t1);
+                            this.t1='';
+                        }
+                        this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',{wd:this.t1},{
+                            jsonp:'cb'
+                        }).then(function(res){
+                            console.log(res);
+                            this.myData = res.data.s;
+                        },function(){
+
+                        })
+                    },
+                    changeDown : function(){
+                        console.log(111111111);
+                        this.now++;
+                        if(this.now ==this.myData.length) this.now = -1;
+                    },
+                    changeUp : function(){
+                        console.log(22222222);
+                        this.now--;
+                        if(this.now==-2) this.now = this.myData.length-1
+                    }
+                }
+            })
+        };
+        
+    </script>
+</head>
+<body>
+    <div id="box" class="box">
+        <input type="text" v-model="t1" @keyup="get($event)" @keydown.down="changeDown()" @keydown.up.prevent = "changeUp()"/>
+        <ul>
+            <li v-for="(v,i) in myData" :class="{gray:i==now}">{{i}}.{{v}}</li>
+        </ul>
+        <p v-show="myData.length==0">暂无数据。。。。。。</p>
+    </div>
+</body>
+</html>

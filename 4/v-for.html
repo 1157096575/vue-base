@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    </head>
+    <body>
+        <div id="box">
+            <button @click='add'>add</button>
+            <ul>
+                <li v-for='val in list'>{{val}}</li>
+            </ul>
+            <ul>
+                <li v-for='(v,i) in list' :k='i'>{{v}}/{{i}}</li>
+            </ul>
+            <hr />
+            <button @click='f1'>f1</button>
+            <ul>
+                <li v-for='(v, k) in list2' :k='k'>{{v}}/{{k}}</li>
+            </ul>
+            <hr />
+
+            <button @click='f2'>f2</button>
+            <ul>
+                <li v-for='(v,i) in list3' :id='i'>{{v}}/{{i}}</li>
+            </ul>
+            <button @click='showFn()'>show</button>
+            <p v-show='show'>pppppppp</p>
+        </div>
+    </body>
+</html>
+<script type="text/javascript" src="../vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el : '#box',
+        data : {
+            list : ['width','height','border'],
+            list2 : {
+                a : 'aaaaaaaaaa',
+                b : 'bbbbbbbbbb',
+                c : 'cccccccccc'
+            },
+            list3 : [
+                {a : 'aa'},
+                {b : 'bb'},
+                {c : 'cc'}
+            ],
+            show : true
+        },
+        methods : {
+            add(){
+                this.list.push('background');
+            },
+            f1(){
+                /*this.list2.d='dddddddddd';
+                console.log(this.list2);
+                vm.$set(vm.$data,"list2",this.list2);*/
+                /*vm.$set(vm.$data,"list2",{
+                    a : 'aaaaaaaaaa',
+                    b : 'bbbbbbbbbb',
+                    c : 'cccccccccc',
+                    d : 'dddddddddd'
+                });*/
+                
+                var o = {
+                    a : 'aaaaaaaaaa',
+                    b : 'bbbbbbbbbb',
+                    c : 'cccccccccc',
+                    d : 'dddddddddd'
+                };
+                //var o =vm.$data.list2;
+                o.e = 'eeeeeeeeee';
+                console.log(o);
+                vm.$set(vm.$data,"list2",o);
+                
+            },
+            f2(){
+                this.list3.push({d:'dd'});
+            },
+            showFn(){
+                this.show = !this.show;
+            }
+        }
+    });
+    
+</script>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        
+    </style>
+    <script src="../vue.js"></script>
+    <!-- <script type="text/javascript" src="../vue-1.js"></script> -->
+    
+</head>
+<body>
+    <div id="box"> 
+        <p>1111111</p>
+        <p>2222222</p>
+        {{a}}
+    </div>
+</body>
+    <script>
+    var vm = new Vue({
+        el : '#box',
+        aaa : 1111,
+        data : {
+            a : 1,
+            b : 2
+        }
+    });
+    vm.$el.style.background='red';
+    console.log(vm.$data);
+    console.log(vm.$props);
+    console.log(vm.$el);
+    console.log(vm.$options);
+    console.log(vm.$options.aaa);
+    console.log(vm.$parent);
+    console.log(vm.$root);
+    console.log(vm.$children);
+    console.log(vm.$slots);
+    console.log(vm.$scopedSlots);
+    console.log(vm.$refs);
+    console.log(vm.$isServer);
+    console.log(vm.$attrs);
+    console.log(vm.$listeners);
+    console.log(vm.$mount);
+    </script>
+</html>

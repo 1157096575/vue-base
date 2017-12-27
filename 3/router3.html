@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../animate.css" />
+    <style>
+        #div1{
+            width: 100px;height: 100px;border: 1px solid #000;
+        }
+        .router-link-active{font-size: 20px; color:#ff0000;}
+        .box1 .router-link-active{font-size: 20px; color:green;}
+
+    </style>
+    
+    <script src="../vue.js"></script>
+    <script type="text/javascript" src="../vue-router.js"></script>
+
+    
+</head>
+<body>
+    <div id="box">
+        <router-link to='/home'>home</router-link>
+        <router-link to='/news'>news</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+    <script>
+        var Home = {
+            template : `<div class="box1">
+                <h3>my Home</h3>
+                <router-link to="/home/home1">home1</router-link>
+                <router-link to="/home/home2">home2</router-link>
+                <router-view></router-view>
+            </div>`
+        };
+        var Home1 = {
+            template : '<p>my home1</p>'
+        };
+        var Home2 = {
+            template : '<p>my home2</p>'
+        };
+        var News = {
+            template : `<div>
+                <h3>my News</h3>
+                <router-link to='/news/news1'>news1</router-link>
+                <router-link to='/news/news2'>news2</router-link>
+                <router-view></router-view>
+            </div>`
+        };
+        var News1 = {
+            template : '<p>my news1</p>'
+        };
+        var News2 = {
+            template : '<p>my news2</p>'
+        };
+        var Err = {
+            template : '<p>404</p>'
+        };
+        var routes = [
+            {
+                path : '/home',
+                component:Home,
+                children : [
+                    {path : 'home1',component:Home1},
+                    {path : 'home2',component:Home2}
+                ]
+            },
+            {
+                path : '/news',
+                component:News,
+                children : [
+                    {path:'news1',component:News1},
+                    {path:'news2',component:News2}
+                ]
+            },
+            {
+                path : '/err',
+                component: Err
+            },
+            {
+                path:'*',
+                redirect : '/err'
+            }
+        ];
+        var router = new VueRouter({
+            routes
+        });
+        new Vue({
+            el : '#box',
+            router
+        });
+    </script>
+</html>

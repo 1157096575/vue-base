@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../animate.css" />
+    <style>
+        #div1{
+            width: 100px;height: 100px;border: 1px solid #000;
+        }
+    </style>
+    <script src="../vue.js"></script>
+    
+</head>
+<body>
+    <div id="box"> 
+        <hr />
+        <aaa>11</aaa>
+        <hr />
+    </div>
+</body>
+    <script>
+        new Vue({
+            el : "#box",
+            data :　{
+                a : '111'
+            },
+            components : {
+                'aaa' : {
+                    template : '<div><h2>h2</h2><hr><bbb>1111</bbb></div>',
+                    components : {
+                        'bbb' : {
+                            template : '<h3>h3</h3>'
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</html>

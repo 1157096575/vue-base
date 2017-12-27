@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        
+    </style>
+    <script src="../vue.js"></script>
+    
+</head>
+<body>
+    <div id="box"> 
+        <button @click="add()">add</button>
+        <p>1111111</p>
+        <p>2222222</p>
+        {{msg}}
+        <br />
+        {{a}}
+    </div>
+</body>
+    <script>
+        new Vue({
+            el : '#box',
+            data : {
+                msg : 'well',
+                a :1
+            },
+            methods : {
+                add : function(){
+                    this.a++
+                }
+            },
+            created : function(){
+                console.log('created');
+            },
+            beforeCompile : function(){
+                console.log('beforeCompile');
+            },
+            compiled : function(){
+                console.log('compiled');
+            },
+            ready : function(){
+                console.log('ready');
+            },
+            beforeCreate : function(){
+                console.log('beforeCreate');
+            },
+            beforeMounted : function(){
+                console.log('beforeMounted');
+            },
+            mounted : function(){
+                console.log('mounted');
+            },
+            beforeUpdated : function(){
+                console.log('beforeUpdated');
+            },
+            updated : function(){
+                console.log('updated');
+            },
+            beforeDestory : function(){
+                console.log('beforeDestory');
+            },
+            destory : function(){
+                console.log('destory');
+            }
+        })
+    </script>
+</html>

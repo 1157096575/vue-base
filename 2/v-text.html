@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        
+    </style>
+    <script src="../vue.js"></script>
+    <!-- <script type="text/javascript" src="../vue-1.js"></script> -->
+    
+</head>
+<body>
+    <div id="box"> 
+        {{a}}
+        <br />
+        <p v-text='a'></p>
+    </div>
+</body>
+    <script>
+    new Vue({
+        el : '#box',
+        data : {
+            a : '<span>啊啊啊啊 啊</span>'
+        }
+    })
+    </script>
+</html>

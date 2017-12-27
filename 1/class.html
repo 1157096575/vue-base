@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        .gray{
+            border:20px solid #ccc;
+        }
+        .red{
+            color: red;
+        }
+        .blue{
+            background: blue;
+        }
+    </style>
+    <script type="text/javascript" src="../vue.js"></script> 
+    <script>
+        window.onload = function(){
+            new Vue({
+                el : '.box',   //2.0 body ==> wrong
+                data:{
+                    red : 'red',
+                    gray : 'gray',
+                    blue : 'blue',
+                    a:true,
+                    b:false,
+                    json : {
+                        red:true,
+                        blue:true,
+                        gray : false
+                    }
+                },
+                methods:{
+
+                }
+            })
+        };
+        
+    </script>
+</head>
+<body>
+    <div id="box" class="box">
+        <span :class="[red,gray]">aaa啊啊啊啊啊啊啊</span>
+        <p :class="{red:true,blue:false,gray:true}">sdsjdj圣诞节</p>
+        <p :class="{red:a,blue:b,gray:a}">shsdjs 安静的</p>
+        <p :class="json">skds锁定</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../animate.css" />
+    <style>
+        #div1{
+            width: 100px;height: 100px;border: 1px solid #000;
+        }
+        .router-link-active{font-size: 20px; color:#ff0000;}
+        .box1 .router-link-active{font-size: 20px; color:green;}
+
+    </style>
+    
+    <script src="../vue.js"></script>
+    <script type="text/javascript" src="../vue-router.js"></script>
+
+    
+</head>
+<body>
+    <div id="box">
+        <button @click='push'>push</button>
+        <button @click='replace'>replace</button>
+        <router-link to='/home'>home</router-link>
+        <router-link to='/user'>user</router-link>
+        <router-view></router-view>
+    </div>
+</body>
+    <script>
+        var Home = {
+            template : `<div>
+                <h3>home</h3>
+            </div>`
+        };
+        var User = {
+            template : `<div>
+                <h3>user</h3>
+                <router-link to='/user/user1/age/10'>user1</router-link>
+                <router-link to='/user/user2/age/20'>user2</router-link>
+                <router-view></router-view>
+            </div>`
+        };
+        var userDetail = {
+            template : `<div>
+                <h3>{{$route.params.username}}</h3>
+                <h3>{{$route.params}}</h3>
+                <p>{{$route}}</p>
+            </div>`
+        };
+        var Err = {
+            template : '<h3>404</h3>'
+        };
+        var routes = [
+            {path:'/home',component:Home},
+            {
+                path:'/user',
+                component:User,
+                children : [{path:':username/age/:age',component:userDetail}]
+            },
+            {path:'/err',component:Err},
+            {path:'*',redirect:'/home'}
+        ];
+        const router = new VueRouter({
+            routes
+        });
+        new Vue({
+            el : '#box',
+            router,
+            methods : {
+                push : function(){
+                    router.push({path:'/user'});
+                },
+                replace : function(){
+                    router.replace({path:'/err'});
+                }
+            }
+        });
+    </script>
+</html>

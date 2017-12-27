@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="../vue.js"></script> 
+    <!-- <script type="text/javascript" src="../vue-1.js"></script> -->
+    <script>
+
+    </script>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="添加" @click="add()">
+        <ul>
+            <li v-for="item in mydata">{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            data : {
+                mydata:[1,2,3,5,6]
+            },
+            methods : {
+                add : function(){
+                    this.mydata.push(99);
+                }
+            }
+        }).$mount('#box');
+        
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

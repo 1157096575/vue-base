@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+    <script type="text/javascript" src="../vue-router.js"></script>
+</head>
+<body>
+    <div id="box">
+        <router-link to="/home">主页</router-link>
+        <router-link to="/user">用户</router-link>
+        <router-view></router-view>
+    </div>
+    <script type="text/javascript">
+        const Home = {
+            template : "<h3>我是主页</h3>"
+        };
+        const User = {
+            template : `<div>
+                <h3>我是用户</h3>
+                <router-link to="/user/strive/age/10">Strive</router-link>
+                <router-link to="/user/blue/age/80">Blue</router-link>
+                <router-link to="/user/eric/age/70">Eric</router-link>
+                <router-view></router-view>
+            </div>`
+        };
+        const UserDetail = {
+            template : "<div>{{$route.params}}</div>"
+        };
+        const routes = [
+            {path:"/home",component:Home},
+            {
+                path:"/user",
+                component:User,
+                children:[
+                    {path:":userName/age/:age",component:UserDetail}
+                ]
+            },
+            {path:"*",redirect:"/home"}
+        ];
+        const router = new VueRouter({
+            routes
+        });
+        new Vue({
+            router,
+            el:"#box"
+        });
+    </script>
+</body>
+</html>

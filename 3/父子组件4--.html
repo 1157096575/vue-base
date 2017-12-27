@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../animate.css" />
+    <style>
+        #div1{
+            width: 100px;height: 100px;border: 1px solid #000;
+        }
+    </style>
+    <script src="../vue.js"></script>
+    
+</head>
+<body>
+    <div id="box"> 
+        <hr />
+        <aaa>11</aaa>
+        <hr />
+        <aaa></aaa>
+        <hr />
+    </div>
+</body>
+    <script>
+    new Vue({
+        el : '#box',
+        data : {
+            a : 1,
+            b : 2
+        },
+        components : {
+            'aaa' : {
+                template : `<div>
+                                <h1>h1{{aaa1}}</h1>
+                                <h2>h2{{aaa2}}</h2>
+                                {{aa1}}/{{aa2}}
+                                <hr/>
+                                <bbb :mmm='aaa1' :nnn='aaa2' @childMsg1='get' @childMsg2='get2'>{{aaa1}}</bbb>
+                            </div>`,
+                data : function(){
+                    return {
+                        aa1 : '',
+                        aa2 : '',
+                        aaa1 : '父组件数据1',
+                        aaa2 : '父组件数据2'
+                    }
+                },
+                methods:{
+                    get(v){
+                        this.aa1 = v;
+                    },
+                    get2(v){
+                        this.aa2 = v;
+                    }
+                },
+                components : {
+                    'bbb' : {
+                        template : '<h3>h3{{bbb1}}{{bbb2}}{{mmm}}{{nnn}}<button  @click="send1">btn1</button><button @click="send2">btn2</button></h3>',
+                        data : function(){
+                            return {
+                                bbb1 : '子组件数据1',
+                                bbb2 : '子组件数据2'
+                            }
+                        },
+                        props : ['mmm','nnn'],
+                        methods : {
+                            send1(){
+                                this.$emit('childMsg1',this.bbb1);
+                            },
+                            send2(){
+                                this.$emit('childMsg2',this.bbb2);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    })
+    </script>
+</html>

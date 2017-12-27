@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="../animate.css" />
+    <style type="text/css">
+        p{width: 10px;height: 10px;background:#ff0000;margin:10px auto;}
+    </style>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-model="show"/>
+        <transition-group name="fade" 
+            enter-active-class="zoomInLeft" 
+            leave-active-class="zoomOutRight" 
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @after-enter="afterEnter"
+            @before-leave="beforeLeave"
+            @leave="leave"
+            @after-leave="afterLeave">
+            <p v-show="show" v-for="(val, index) in lists" class="animated" :key="index">{{val}}</p>
+        </transition-group> 
+    </div>
+    <script type="text/javascript">
+    new Vue({
+        el:"#box",
+        data:{
+            show:'',
+            list:['apple','banana','orange','pear']
+        },
+        computed:{
+            lists:function(){
+                var arr = [];
+                this.list.forEach(function(val){
+                    if(val.indexOf(this.show)!=-1){
+                        arr.push(val);
+                    }
+                }.bind(this))
+                return arr;
+            }
+        },
+        methods:{
+            beforeEnter(){
+                console.log('beforeEnter');
+            },
+            enter(){
+                console.log('enter');
+            },
+            afterEnter(){
+                console.log('afterEnter');
+            },
+            beforeLeave(){
+                console.log('beforeLeave');
+            },
+            leave(){
+                console.log('leave');
+            },
+            afterLeave(){
+                console.log('afterLeave');
+            }
+        }
+    })
+    </script>
+</body>
+</html>

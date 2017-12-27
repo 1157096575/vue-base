@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="../vue.js"></script>  
+    <!-- <script type="text/javascript" src="../vue-1.js"></script> -->
+</head>
+<body>
+    <div id="box">
+        <button @click="add()">btn</button>
+        {{a}}
+        <br />
+        {{b}}
+        <br />
+        {{json}}
+    </div>
+    <script>
+        var vm = new Vue({
+            data:{
+                a : 1,
+                b : 2,
+                json : {
+                    name : 'li',
+                    age : 6
+                }
+            },
+            methods : {
+                add : function(){
+                    this.a = this.a+=2;
+                    this.json.age += 10;
+                    console.log(this.json.age);
+                    console.log(this.a);
+                }
+            },
+            watch : {
+                a : function(){
+                    console.log(144444444444444);
+                }
+            }
+        }).$mount('#box');
+        /*vm.$watch('a',function(){
+            console.log(144444444444444);
+        });*/
+        vm.$watch('json',function(){
+            console.log(2222222222222222);
+        },{deep:true});
+        
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        .gray{
+            border:20px solid #ccc;
+        }
+        .red{
+            color: red;
+        }
+        .blue{
+            background: blue;
+        }
+    </style>
+    <script type="text/javascript" src="../vue.js"></script> 
+    <script>
+        window.onload = function(){
+            new Vue({
+                el : '.box',   //2.0 body ==> wrong
+                data:{
+                    a : {
+                        background:'green',
+                        height:'60px',
+                    },
+                    b:{
+                        width : '500px',
+                        color : 'red'
+                    }
+                },
+                methods:{
+
+                }
+            })
+        };
+    </script>
+</head>
+<body>
+    <div id="box" class="box">
+        <p :style='[a,b]'>思考思考</p>
+        <p :style="{color:'red'}">dj看是</p>
+        <p :style="a">思考是</p>
+    </div>
+</body>
+</html>

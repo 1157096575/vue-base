@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../animate.css" />
+    <style>
+        #div1{
+            width: 100px;height: 100px;border: 1px solid #000;
+        }
+    </style>
+    <script src="../vue.js"></script>
+    
+</head>
+<body>
+    <div id="box"> 
+        <hr />
+        <aaa>11</aaa>
+        <hr />
+    </div>
+</body>
+    <script>
+        new Vue({
+            el : "#box",
+            data :　{
+                a : '2222222222'
+            },
+            components : {
+                'aaa' : {
+                    data : function() {
+                        return {
+                            msg2 : '我是父组件的数据',
+                            msg1 : 1111
+                        }
+                    },
+                    /*data(){
+                        return {
+                            msg2:'我是父组件的数据'
+                        }
+                    },*/
+                    template : '<div><h2>h2{{msg1}}{{msg2}}</h2><hr><bbb :nnn="msg1" :mmm="msg2">1111</bbb></div>',
+                    //template : '#aaa',
+                    components : {
+                        'bbb' : {
+                            props : {
+                                'mmm' : String,
+                                'nnn' : Number
+                            },
+                            template : '<h3>h3{{nnn}}{{mmm}}</h3>'
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <style type="text/css">
+            p{width: 300px;height: 300px;background:#fff000;}
+            .f-enter-active, .f-leave-active{transition:all 1s;}
+            .f-enter-active{opacity:1;width: 300px;height: 300px;}
+            .f-leave-active{opacity:0;width: 100px;height: 100px;}
+            .f-enter{opacity:0;width: 100px;height: 100px;}
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <button @click='show=!show'>btn</button>
+            <transition name='f'>
+                <p v-show='show'>{{show}}</p>
+            </transition>
+        </div>
+    </body>
+</html>
+<script type="text/javascript" src="../vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el : '#box',
+        data : {
+            show : false
+        }
+    })
+</script>

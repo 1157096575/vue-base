@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../animate.css" />
+    <style>
+        #div1{
+            width: 100px;height: 100px;border: 1px solid #000;
+        }
+        .router-link-active{font-size: 20px; color:#ff0000;}
+
+    </style>
+    
+    <script src="../vue.js"></script>
+    <script type="text/javascript" src="../vue-router.js"></script>
+
+    
+</head>
+<body>
+    <div id="box">
+        <div>
+            <router-link to='/home'>主页</router-link>
+            <router-link to='/news'>新闻</router-link>
+        </div>
+        <router-view></router-view>
+    </div>
+</body>
+    <script>
+        var Home = {
+            template : '<h3>主页</h3>'
+        };
+        var News = {
+            template : '<h3>新闻</h3>'
+        };
+        var Err = {
+            template : '<h3>404</h3>'
+        };
+        const routes = [
+            {path:'/home',component:Home},
+            {path:'/news',component:News},
+            {path:'/err',component:Err},
+            {path:'*',redirect:'/err'}
+        ];
+        const router = new VueRouter({
+            routes
+        });
+        new Vue({
+            el:'#box',
+            router
+        })
+    </script>
+</html>

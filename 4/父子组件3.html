@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    </head>
+    <body>
+        <div id="box">
+            父========{{aa}}////////////{{giveData.a}}///////////{{aaa.a1}}
+            <hr />
+            <child-com :msgg='aa' :msggg='aaa' :msg='giveData'>1111111111</child-com>
+        </div>
+        <template id='child'>
+            <div>
+                ==child=={{b}}
+                <hr />
+                {{msgg}}==={{msgg.aa}}/{{msg}}==={{msg.a}}/{{msggg}}==={{msggg.a1}}
+                <button @click='change' >change</button>
+            </div>
+            
+        </template>
+    </body>
+</html>
+<script type="text/javascript" src="../vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el : '#box',
+        data : {
+            aa : '我是父组件数据aa',
+            giveData : {
+                a : '我也是父组件的数据>>>giveData'
+            },
+            aaa : {
+                a1: '我也是父组件的数据>>>aaa'
+            }
+        },
+        components : {
+            'child-com' : {
+                data(){
+                    return {
+                        b : 'bbbbbbbbbbb'
+                    }
+                },
+                props : ['msg','msgg','msggg'],
+                template : '#child',
+                methods : {
+                    change(){
+                        this.b = '被改了';
+                        this.msg.a = 'this.msg.a被改了';
+                        this.msgg.aa = 'this.msgg.aa被改了';
+                        this.msggg.a1 = 'this.msggg.a1被改了';
+                    }
+                }
+            }
+        }
+    })
+</script>

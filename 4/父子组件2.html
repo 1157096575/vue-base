@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    </head>
+    <body>
+        <div id="box">
+            {{msg}}
+            <Aaa>Aaa</Aaa>
+            
+        </div>
+    </body>
+</html>
+<script type="text/javascript" src="../vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        data : {
+            msg : '最外层'
+        },
+        el : '#box',
+        components : {
+            'Aaa' : {
+                data : function(){
+                    return {
+                        a:'aaaaaaaaaaaaaaaaaa',
+                        a1 : '父 a1',
+                        a2 : '父 a2',
+                        a3 : ''
+                    }
+                },
+                template : `<div>
+                    <h2>Aaa</h2>
+                    {{a1}}/{{a2}}/{{a3}}/{{a}}
+                    <button @click='changea'>changea</button>
+                    <hr>
+                    <Bbb @bmsg='get' :mmm='a1' :nnn='a2'>Bbb</Bbb>
+
+                </div>`,
+                methods : {
+                    get(v){
+                        this.a3 = v;
+                    },
+                    changea(){
+                        this.a = 'aaaaaaaaaaa被改了'
+                    }
+                },
+
+                components : {
+                    'Bbb' : {
+                        data : function(){
+                            return {
+                                b : 'bbbbbbbbbbbb',
+                                b1 : '子 b1',
+                                b2 : '子 b2',
+                                b3 : ''
+                            }
+                        },
+                        props : ['mmm','nnn'],
+                        mounted : function(){
+                            this.b = this.mmm;
+                        },
+                        template : `<div>
+                            <h2>Bbb</h2>
+                            {{b1}}/{{b2}}/{{b3}}/{{b}}
+                            <hr>
+                            {{mmm}}/{{nnn}}
+                            <button @click='send'>send</button>
+                            <button @click='changeb'>changeb</button>
+                        </div>`,
+                        methods : {
+                            send(){
+                                this.$emit('bmsg',this.b1);
+                            },
+                            mounted : function(){
+                                this.b = this.mmm;
+                            },
+                            changeb : function(){
+                                this.b = 'bbbbbbbbbbbb被改了';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    })
+</script>

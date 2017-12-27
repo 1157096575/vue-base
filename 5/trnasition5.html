@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+    <style type="text/css">
+        p{width: 200px;height: 200px;background:#ff0000;}
+        .fade-enter-active, .fade-leave-active{transition:all 1s;}
+        .fade-enter-active{opacity:1;width: 200px;height: 200px;}
+        .fade-enter{opacity:0;width: 100px;height: 100px;}
+        .fade-leave-active{opacity:0;width: 100px;height: 100px;}
+    </style>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="点击显示隐藏" @click="show=!show"/>
+        <transition-group name="fade">
+            <p v-show="show" class="animated" :key="1"></p>
+            <p v-show="show" class="animated" :key="2"></p>
+        </transition-group> 
+    </div>
+    <script type="text/javascript">
+    new Vue({
+        el:"#box",
+        data:{
+            show:false
+        }
+    })
+    </script>
+</body>
+</html>

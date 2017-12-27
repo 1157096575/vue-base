@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        
+    </style>
+    <script src="../vue.js"></script>
+    <!-- <script type="text/javascript" src="../vue-1.js"></script> -->
+    
+</head>
+<body>
+    <div id="box"> 
+        <button @click="add()">111111</button>
+        a => {{a}}
+        <br />
+        b => {{b}}
+        <br />
+        c => {{c}}
+        <br />
+        bb => {{bb}}
+    </div>
+</body>
+    <script>
+    var vm = new Vue({
+        el : '#box',
+        data : {
+            a : 1,
+            b : 11
+        },
+        computed : {
+            b : function(){
+                return this.a+22;
+            },
+            bb : function(){
+                return this.b +999;
+            },
+            c : {
+                get : function(v){
+                    console.log(v);
+                    return this.a + 100;
+                },
+                set : function(val){
+                    console.log(val);
+                    this.a = 999;
+                }
+            }
+        },
+        methods : {
+            add : function(){
+                this.c = 0;
+            }
+        }
+    });
+    console.log(vm.b);
+    </script>
+</html>

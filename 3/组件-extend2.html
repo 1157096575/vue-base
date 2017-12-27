@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../animate.css" />
+    <style>
+        #div1{
+            width: 100px;height: 100px;border: 1px solid #000;
+        }
+    </style>
+    <script src="../vue.js"></script>
+    
+</head>
+<body>
+    <div id="box"> 
+        <hr />
+        <aaa></aaa>
+        <hr />
+    </div>
+</body>
+    <script>
+        var Aaa = Vue.extend({
+            data : function(){
+                return {
+                    a : 11111111111111111,
+                    b : 22222222222222222
+                }
+            },
+            template : `<div>
+                <h3>{{a}}</h3>
+                <hr>
+                {{b}}
+                <button type="" @click="add()">btn</button>
+            </div>`,
+            methods : {
+                add : function(){
+                    this.a = this.a+10;
+                    console.log(this.a);
+                }
+            }
+        });
+        Vue.component('aaa',Aaa);
+        new Aaa().$mount('#box');
+    </script>
+</html>
